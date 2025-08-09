@@ -58,19 +58,7 @@ fun Onboarding(navController: NavController) {
 
     Scaffold(
         topBar = {
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.logo),
-                    contentDescription = stringResource(R.string.little_lemon_logo),
-                    modifier = Modifier
-                        .size(100.dp)
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                )
-            }
+            TopBar()
         }
     ) { contentPadding ->
 
