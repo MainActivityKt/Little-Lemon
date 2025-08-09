@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.safire.littlelemon.ui.theme.LittleLemonTheme
 
@@ -43,6 +46,23 @@ fun LittleLemonApp(modifier: Modifier = Modifier) {
         text = "Hello, world!",
         modifier = modifier
     )
+}
+
+@Composable
+fun NavigationComposable(navController: NavHostController, isUserDataStored: Boolean) {
+    NavHost(
+        navController = navController,
+        startDestination = if (isUserDataStored) SCREEN.ONBOARDING.route else SCREEN.HOME.route
+    ) {
+
+
+        composable(SCREEN.ONBOARDING.route) {  } //TODO
+        composable(SCREEN.HOME.route) {  }   //TODO
+        composable(SCREEN.USER_PROFILE.route) {
+
+
+        }   //TODO
+    }
 }
 
 @Preview(showBackground = true)
