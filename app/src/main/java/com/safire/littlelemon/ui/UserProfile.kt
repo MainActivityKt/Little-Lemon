@@ -63,9 +63,8 @@ fun UserProfile(navController: NavController) {
                 onClick = {
                     sharedPreferences.edit { clear() }
 
-                    navController.navigate(SCREEN.ONBOARDING.route) {
-                        popUpTo(SCREEN.ONBOARDING.route) { inclusive = true }
-                    }
+
+                    navController.popBackStack(SCREEN.ONBOARDING.route, false)
                 },
                 modifier = Modifier.padding(top = 16.dp)
             ) {

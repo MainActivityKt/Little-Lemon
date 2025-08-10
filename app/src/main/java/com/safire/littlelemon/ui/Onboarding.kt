@@ -119,7 +119,9 @@ fun Onboarding(navController: NavController) {
 
             val context = LocalContext.current
 
-            Button(onClick = {
+            Button(
+                enabled = firstName.isNotEmpty() && surname.isNotEmpty() && emailAddress.isEmailValid(),
+                onClick = {
                 if (firstName.isEmpty() || surname.isEmpty() || emailAddress.isEmpty()) {
                     Toast.makeText(
                         context,
@@ -132,7 +134,7 @@ fun Onboarding(navController: NavController) {
                     sharedPreferences.edit(commit = true) { putString(SURNAME, surname) }
 
                     Toast.makeText(context, "Successfully registered", Toast.LENGTH_LONG).show()
-                    navController.navigate(SCREEN.HOME)
+                    navController.navigate(SCREEN.HOME.route)
                 }
 
             }) {

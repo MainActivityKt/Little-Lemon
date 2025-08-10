@@ -2,6 +2,7 @@ package com.safire.littlelemon.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +26,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -45,6 +48,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.safire.littlelemon.AppDatabase
 import com.safire.littlelemon.MenuItem
 import com.safire.littlelemon.R
+import com.safire.littlelemon.SCREEN
 import com.safire.littlelemon.ui.theme.green
 import com.safire.littlelemon.ui.theme.yellow
 
@@ -53,8 +57,28 @@ import com.safire.littlelemon.ui.theme.yellow
 fun HomeScreen(navController: NavController, database: AppDatabase) {
     val databaseMenuItems by database.menuItemDao().getAll().observeAsState(initial = emptyList())
 
-    Scaffold(topBar = { TopBar() }) { innerPadding ->
+    Scaffold(
+
+        topBar = {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(
+                    Icons.Default.Person,
+                    contentDescription = stringResource(R.string.person_description),
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(16.dp)
+                        .clickable { navController.navigate(SCREEN.USER_PROFILE.route) }
+                )
+                TopBar()
+            }
+        }
+    ) { innerPadding ->
+
         HeroSection(databaseMenuItems, innerPadding)
+
     }
 }
 

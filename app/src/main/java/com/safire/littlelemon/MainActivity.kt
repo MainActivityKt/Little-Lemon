@@ -96,7 +96,7 @@ fun NavigationComposable(navController: NavHostController, database: AppDatabase
 
     NavHost(
         navController = navController,
-        startDestination = if (hasUserData) SCREEN.ONBOARDING.route else SCREEN.HOME.route
+        startDestination = if (hasUserData) SCREEN.HOME.route else SCREEN.ONBOARDING.route
     ) {
 
 
