@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 
     kotlin("plugin.serialization") version "2.0.21"
+    kotlin("kapt")
 }
 
 android {
@@ -41,14 +42,29 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes=true
+}
+
 dependencies {
+
+    implementation(libs.androidx.runtime.livedata)
+    implementation("io.ktor:ktor-client-content-negotiation:2.1.3")
+    implementation("io.ktor:ktor-client-android:2.1.3")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.3")
+
 
     val nav_version = "2.9.3"
 
-    // Jetpack Compose integration
+    // Jetpack Compose navigation
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    val room_version = "2.4.0"
 
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
